@@ -9,10 +9,9 @@
      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="stylesheets/style.scss">
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/style.css.map">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
@@ -21,48 +20,99 @@
 
     <!-- App -->
     <script type="text/javascript" src="bower_components/angular-materialize/js/app.js"></script>
+    <script src="javascripts/script.js" type="text/javascript" charset="utf-8"></script>
+    <script src="javascripts/angularController.js" type="text/javascript" charset="utf-8"></script>
 </head>
-<body ng-app="materializeApp" ng-controller="BodyController">
-<header>
+<body ng-controller="StockCtrl as stock" ng-cloak>
+  <header>
     <nav class="green accent-3">
-    <div class="nav-wrapper">
-      <a href="#!" class="brand-logo">iStock</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="sass.html"><i class="material-icons">search</i></a></li>
-        <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
-        <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
-        <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
-      </ul>
-    </div>
-  </nav>
-</header>
- <ul class="side-nav fixed">
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo"><i class="material-icons left">equalizer</i>Stock</a>
+        <ul class="right hide-on-tiny-and-down">
+          <li><a href="sass.html"><span><i class="material-icons">search</i></span></a></li>
+          <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
+          <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
+          <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <ul class="side-nav fixed show-on-medium-and-down">
     <div class="container">
-    <li class="logo green-text text-accent-3"><h3>iStock</h3></li>
-  
-    <li>Keep stock name secret!</li>
+    <li class="green-text text-accent-3"><i class="material-icons left large">equalizer</i>&nbsp;<br></li>
     <li class="divider"></li>
-    <form>
-        <div class="input-field">
-          <i class="material-icons prefix">trending_up</i>
-          <input id="icon_telephone" type="number" class="validate">
-          <label for="icon_telephone">Price</label>
-        </div>
+    <li>{{ stock.name }}</li>
+    <form ng-controller="PriceCtrl as pricey" ng-submit="pricey.addPrice()">
+      <blockquote class="center-align">
+        <strong> <h5 class="heading pink accent-3 white-text"> {{ pricey.price | currency }}</h5></strong>
+      </blockquote>
+      <div class="input-field">
+        <i class="material-icons prefix">trending_up</i>
+        <input id="icon_stock" type="number" step="0.01" class="validate" ng-model="pricey.price">
+        <label for="icon_stock">Price</label>
+      </div>
+
+      <div class="input-field">
+        <button type="submit" class="btn btn-waves light-blue"><i class="right material-icons">add</i>Add it</button>
+        <button ng-click="stock.renderGraph()" class="btn btn-waves green accent-3"><i class="right material-icons">equalizer</i>Graph</button>
+        <button class="btn btn-waves red accent-3" ng-click="pricey.clearPrices()"><i class="tiny material-icons right">delete</i>Clear</button>
+      </div>
     </form>
   </div>
 </ul>
 
+
 <main>
-  <div class="container">
-    <h1> When should I buy?</h1>
-    <div id="chart">
-      
-    </div>  
+  <div class="container center-align">
+    <h1 class="header light-blue-text"> When should I buy?</h1>
+    <h3 class="header materialize-red-text text-accent-3"> Stock Prices will be at: </h3>
+      <p class="caption"><span class="hide-on-med-and-down btn-floating btn-large left"><i class="medium material-icons">skip_previous</i></span>Insert where the stock will be and I'll tell your best possible entries and exits!</p>
+    <form class="hide-on-large-only row" ng-controller="PriceCtrl as pricey" ng-submit="pricey.addPrice()">
+      <div class="container">
+        <blockquote class="center-align">
+          <strong> <h5 class="heading red accent-3 white-text"> {{ pricey.price | currency }}</h5></strong>
+        </blockquote>
+      </div>
+      <div class="input-field">
+        <i class="material-icons prefix">trending_up</i>
+        <input id="icon_stock" type="number" step="0.01" class="validate" ng-model="pricey.price">
+        <label for="icon_stock">Price</label>
+      </div>
+
+      <div class="input-field">
+        <button type="submit" class="btn btn-waves light-blue"><i class="right material-icons">add</i>Add it</button>
+        <button ng-click="stock.renderGraph()" class="btn btn-waves green accent-3"><i class="right material-icons">equalizer</i>Graph</button>
+      </div>
+      <div class="input-field"
+        <button class="btn btn-waves red accent-3" ng-click="stock.clearPrices()"><i class="tiny material-icons right">delete</i>Clear</button>
+      </div>
+    </form>
+    <div class="card large">
+      <div class="input-field right">
+        <a class="waves-effect waves-light btn light-blue" ng-init="stock.profit.max = 0" message="Max Profit" duration="10000" data-toast='click'>Profit {{ stock.profit[1].profit | currency }}</a>
+      </div>
+      <div class="input-field left">
+        <a class="waves-effect waves-light btn green accent-3" ng-init="stock.profit.high = 0" message="Highest Price" duration="10000" data-toast='click'>High {{ stock.profit[0].high | currency }}</a>
+      </div>
+      <div class="input-field right">
+        <a class="waves-effect waves-light btn orange accent-2" ng-init="stock.profit.max = 0" message="Max Profit" duration="10000" data-toast='click'>Buy {{ stock.profit[1].buy | currency }}</a>
+      </div>
+      <div class="input-field left">  
+        <a class="waves-effect waves-light btn red accent-3" ng-init="stock.profit.low = 0" message="Lowest Price" duration="10000" data-toast='click'>Low {{ stock.profit[0].low | currency }}</a>
+      </div>
+      <div class="input-field right">
+        <a class="waves-effect waves-light btn purple accent-3" ng-init="stock.profit.max = 0" message="Max Profit" duration="10000" data-toast='click'>Sell {{ stock.profit[1].sell | currency }}</a>
+      </div>
+      <svg class="graph" ng-attr-height="{{ stock.graph.height }}" ng-attr-width="{{ stock.graph.width }}">
+        <path class="line" ng-attr-d="{{ stock.line(stock.points) }}"></path>
+      </svg>
+    </div>
+    <div class="card-panel row">
+      <div class="col s1" ng-repeat="price in stock.prices track by $index">
+        <h5 class="pink lighten-5 red-text text-accent-3">{{ price | currency}} </h5>
+      </div>
+    </div>
   </div>
 </main>
-
-
-
-<script src="javascripts/script.js" type="text/javascript" charset="utf-8" async defer></script>
 </body>
 </html>

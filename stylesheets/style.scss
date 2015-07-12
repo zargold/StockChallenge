@@ -1,6 +1,32 @@
 .nav-wrapper {
-  margin-left: 40px;
+  margin-left: 40px
 }
-.divider {
-  margin-bottom: 40px
+li.divider {
+  margin-top: 55px;
+  margin-bottom: 30px
+}
+
+.graph {
+  margin-top: 25px
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: lime;
+  stroke-width: 1.5px;
 }
