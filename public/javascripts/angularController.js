@@ -7,10 +7,11 @@ angular.element(document).ready(function() {
   app.points = [];
 
   app.calcMax = function() {
-    var lowestSoFar = app.currentPrices[0];
-    var highest = app.currentPrices[0];
+    console.log(app.currentPrices)
+    var lowestSoFar = (app.currentPrices[0] || 0);
+    var highest = (app.currentPrices[0] || 0);
     var maxProfit = 0;
-    var profitObj = {};
+    var profitObj = {buy: lowestSoFar, sell: highest, profit: maxProfit};
     app.currentPrices.forEach(function(price){
       if (price < lowestSoFar){
         lowestSoFar = price;
@@ -23,7 +24,7 @@ angular.element(document).ready(function() {
         profitObj = {buy: lowestSoFar, sell: price, profit: maxProfit};
       }
     });
-    return [{low: lowestSoFar, high: highest}, profitObj];
+    return [{low: (lowestSoFar||0), high: (highest||0)}, profitObj];
   };
 
   app.fillGraph = function(){
@@ -34,12 +35,14 @@ angular.element(document).ready(function() {
   app.controller('StockCtrl', function($scope) {
     this.graph = {'width': 550, 'height': 350};
     this.name = "hidden secret";
-    this.profit = [{low: 0, high: 0}, {buy: 0, sell: 0, profit: 0}];
+    this.profit = app.calcMax();
     this.prices = app.currentPrices;
     this.points = app.points;
     var x = d3.time.scale().range([0, this.graph.width]);
     var y = d3.scale.linear().range([this.graph.height, 0]);
+    
     this.renderGraph = function(){
+      console.log("rendering");
       this.profit = app.calcMax();
       x.domain(d3.extent(this.points, function(d) {return d.x}));
       y.domain(d3.extent(this.points, function(d) {return d.y}));
@@ -47,6 +50,15 @@ angular.element(document).ready(function() {
       this.line = d3.svg.line()
         .x(function(d) {return x(d.x);})
         .y(function(d) {return y(d.y);});
+    };
+    this.clearPrices = function(){
+      console.log("clearing");
+      app.currentPices = [];
+      this.prices = app.currentPices;
+      app.points = [];
+      this.points = app.points;
+      app.count = 0;
+      this.renderGraph();
     };
   });
 
