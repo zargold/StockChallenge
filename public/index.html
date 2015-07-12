@@ -61,23 +61,29 @@
   <div class="container center-align">
     <h1 class="header light-blue-text"> When should I buy?</h1>
     <h3 class="header materialize-red-text text-accent-3"> Stock Prices will be at: </h3>
-      <p class="caption"><span class="hide-on-med-and-down btn-floating btn-large left"><i class="medium material-icons">skip_previous</i></span>Insert where the stock will be and I'll tell your best possible entries and exits!</p>
+    <div class="container">
+    <span class="hide-on-med-and-down btn-floating large left"><i class="medium material-icons">skip_previous</i></span>
+    </div>
+      <p class="caption">Insert where the stock will be and I'll tell your best possible entries and exits!</p>
     <form class="hide-on-large-only row" ng-controller="PriceCtrl as pricey" ng-submit="pricey.validated() && pricey.addPrice()">
       <div class="container">
         <blockquote class="center-align">
           <strong> <h5 class="heading red accent-3 white-text"> {{ pricey.price | currency }}</h5></strong>
         </blockquote>
       </div>
-      <div class="input-field">
-        <i class="material-icons prefix">trending_up</i>
-        <input id="icon_stock" type="number" step="0.01" class="validate" ng-model="pricey.price">
-        <label for="icon_stock">Price</label>
-      </div>
-
-      <div class="input-field">
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <i class="material-icons prefix">trending_up</i>
+          <input id="icon_stock" type="number" step="0.01" class="validate" ng-model="pricey.price">
+          <label for="icon_stock">Price</label>
+        </div>
+      <div class="col s12 m6">
         <button type="submit" class="waves-effect waves-light btn light-blue">
           <span class="white-text"> Add it<i class="material-icons">add</i></span>
         </button>
+      </div>
+      </div>
+      <div class="row s12">
         <a ng-click="stock.renderGraph()" class="waves-effect waves-light btn green accent-3"><i class="right material-icons">equalizer</i>Graph</ba>
         <a ng-click="stock.clearPrices()" class="waves-effect waves-light btn red accent-3"><i class="tiny material-icons right">delete</i>Clear</a>
       </div>
