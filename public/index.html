@@ -42,7 +42,7 @@
     <li class="green-text text-accent-3"><i class="material-icons left large">equalizer</i>&nbsp;<br></li>
     <li class="divider"></li>
     <li> {{ stock.name }} </li>
-    <form ng-controller="PriceCtrl as pricey" ng-submit="pricey.addPrice()">
+    <form ng-controller="PriceCtrl as pricey" ng-submit="pricey.validated() && pricey.addPrice()">
       <blockquote class="center-align">
         <strong> <h5 class="heading pink accent-3 white-text"> {{ pricey.price | currency }}</h5></strong>
       </blockquote>
@@ -66,7 +66,7 @@
     <h1 class="header light-blue-text"> When should I buy?</h1>
     <h3 class="header materialize-red-text text-accent-3"> Stock Prices will be at: </h3>
       <p class="caption"><span class="hide-on-med-and-down btn-floating btn-large left"><i class="medium material-icons">skip_previous</i></span>Insert where the stock will be and I'll tell your best possible entries and exits!</p>
-    <form class="hide-on-large-only row" ng-controller="PriceCtrl as pricey" ng-submit="pricey.addPrice()">
+    <form class="hide-on-large-only row" ng-controller="PriceCtrl as pricey" ng-submit="pricey.validated() && pricey.addPrice()">
       <div class="container">
         <blockquote class="center-align">
           <strong> <h5 class="heading red accent-3 white-text"> {{ pricey.price | currency }}</h5></strong>

@@ -70,6 +70,13 @@ angular.element(document).ready(function() {
       app.count++;
       this.price = null;
     };
+    this.validated = function(){
+      if (null !== this.price && !isNaN(parseInt(this.price, 10)) ){
+        return true;
+      } else {
+        return false;
+      }
+    };
   });
 
   angular.bootstrap(document, ['stockGraph']);
