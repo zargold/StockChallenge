@@ -4,7 +4,7 @@
   var port = (process.env.PORT || 3000);
   //set the app to render from /Public
   
-app.use(express.static(__dirname + '/Public'))
+app.use(express.static(__dirname + '/public'))
 .listen(port, function(){
       console.log("listening on Port: "+port);
     });
