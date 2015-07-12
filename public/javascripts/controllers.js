@@ -53,8 +53,8 @@ angular.element(document).ready(function() {
     };
     this.clearPrices = function(){
       console.log("clearing");
-      app.currentPices = [];
-      this.prices = app.currentPices;
+      app.currentPrices = [];
+      this.prices = app.currentPrices;
       app.points = [];
       this.points = app.points;
       app.count = 0;
