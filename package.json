@@ -1,0 +1,20 @@
+{
+  "name": "Reelio",
+  "version": "1.0.0",
+  "description": "Have Perfect Insider's Information? Find out the perfect buy and sell times (D3, HTML, SASS, Angular)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zargold/StockChallenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zargold/StockChallenge/issues"
+  },
+  "homepage": "https://github.com/zargold/StockChallenge"
+}
