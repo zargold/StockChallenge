@@ -8,6 +8,10 @@
 .graph {
   margin-top: 25px; }
 
+button, a {
+  height: 44px;
+  line-height: 44px; }
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important; }
 

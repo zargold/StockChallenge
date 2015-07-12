@@ -3,9 +3,8 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
     <title>Insider's Guide to when to Buy</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.css">
-    <link rel="stylesheet" href="bower_components/angular-materialize/css/style.css">
      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="stylesheets/style.scss">
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
@@ -13,13 +12,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
-
-    <script type="text/javascript" src="bower_components/angular-materialize/src/angular-materialize.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+          
     <!-- App -->
-    <script type="text/javascript" src="bower_components/angular-materialize/js/app.js"></script>
     <script src="javascripts/controllers.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body ng-controller="StockCtrl as stock" ng-cloak>
@@ -49,7 +44,9 @@
         <i class="material-icons prefix">trending_up</i>
         <input id="icon_stock" type="number" step="0.01" class="validate" ng-model="pricey.price">
         <label for="icon_stock">Price</label>
-        <button type="submit" class="waves-effect waves-light btn light-blue"><i class="right material-icons">add</i>Add it</button>
+        <button type="submit" class="waves-effect waves-light btn light-blue">
+          <span class="white-text"> Add it <i class="material-icons">add</i></span>
+        </button>
       </div>
       <div class="input-field">
         <a ng-click="stock.renderGraph()" class="waves-effect waves-light btn green accent-3"><i class="right material-icons">equalizer</i>Graph</a>
@@ -78,8 +75,10 @@
       </div>
 
       <div class="input-field">
-        <button type="submit" class="waves-effect waves-light btn light-blue"><i class="right material-icons">add</i>Add it</button>
-        <button ng-click="stock.renderGraph()" class="waves-effect waves-light btn green accent-3"><i class="right material-icons">equalizer</i>Graph</button>
+        <button type="submit" class="waves-effect waves-light btn light-blue">
+          <span class="white-text"> Add it<i class="material-icons">add</i></span>
+        </button>
+        <a ng-click="stock.renderGraph()" class="waves-effect waves-light btn green accent-3"><i class="right material-icons">equalizer</i>Graph</ba>
         <a ng-click="stock.clearPrices()" class="waves-effect waves-light btn red accent-3"><i class="tiny material-icons right">delete</i>Clear</a>
       </div>
       <div class="divider">
