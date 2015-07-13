@@ -84,7 +84,7 @@
       </div>
       </div>
       <div class="row s12">
-        <a ng-click="stock.renderGraph()" class="waves-effect waves-light btn green accent-3"><i class="right material-icons">equalizer</i>Graph</ba>
+        <a ng-click="stock.renderGraph()" class="waves-effect waves-light btn green accent-3"><i class="right material-icons">equalizer</i>Graph</a>
         <a ng-click="stock.clearPrices()" class="waves-effect waves-light btn red accent-3"><i class="tiny material-icons right">delete</i>Clear</a>
       </div>
       <div class="divider">
@@ -115,6 +115,24 @@
     <div class="card-panel row">
       <div class="col s2" ng-repeat="price in stock.prices track by $index">
         <h5 class="pink lighten-5 red-text text-accent-3 center-align">{{ price | currency }}</h5>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="card">
+      <div class="input-field">
+        <textarea rows="10" cols="50" id="pyramidInput">
+                         5
+                     9      6
+                  4      6      8
+              0      18       1     5
+           3     6       21     5      9
+        3    6      7       5      9       31</textarea>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="card">
+      <div id="pyramidBlocks">
       </div>
     </div>
   </div>
