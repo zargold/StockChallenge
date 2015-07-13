@@ -23,10 +23,10 @@
       <div class="nav-wrapper">
         <a href="#!" class="brand-logo"><i class="material-icons left">equalizer</i>Stock</a>
         <ul class="right hide-on-tiny-and-down">
-          <li><a href="sass.html"><span><i class="material-icons">search</i></span></a></li>
-          <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
-          <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
-          <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
+          <li><a href="http://mylevl.com"><span><i class="material-icons">search</i></span></a></li>
+          <li><a href="https://pammycakes.herokuapp.com"><i class="material-icons">view_module</i></a></li>
+          <li><a href="http://razgoldin.com:3333"><i class="material-icons">refresh</i></a></li>
+          <li><a href="https://intelcarousel.herokuapp.com"><i class="material-icons">more_vert</i></a></li>
         </ul>
       </div>
     </nav>
@@ -35,7 +35,7 @@
     <div class="container">
       <li class="green-text text-accent-3" id="logo"><i class="material-icons left large">equalizer</i>&nbsp;</li>
       <li class="divider"></li>
-      <li> {{ stock.name }} </li>
+      <li> Enter each stock price then, press the enter key to add! </li>
       <form ng-controller="PriceCtrl as pricey" ng-submit="pricey.validated() && pricey.addPrice()" ngcloak>
         <blockquote class="center-align">
           <strong> <h5 class="heading pink accent-3 white-text"> {{ pricey.price | currency }}</h5></strong>
@@ -54,6 +54,7 @@
         </div>
       </form>
     </div>
+    <li ng-repeat="price in stock.prices track by $index small" class="pink lighten-5 red-text text-accent-3 center-align"> {{ price | currency }}</li>
   </ul>
 
 
@@ -154,7 +155,7 @@
           </button>
           <blockquoute>
             <li><strong> <h5 class="caption text-accent-3"> Total of: {{ monk.pyrInfo.len }} Rows!</h5></strong></li>
-            <li><strong> <h5 class="caption text-accent-3"> Best Route: {{ monk.pyramid[0][0].num }} Bananas!</h5></strong></li>
+            <li><strong> <h5 class="caption text-accent-3" ng-hide=""> Best Route: {{ monk.pyramid[0][0].num }} Bananas!</h5></strong></li>
           </blockquoute>
 
         </div>
