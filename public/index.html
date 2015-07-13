@@ -123,6 +123,8 @@
     </div>
   </div>
   <div class="container">
+  <h2 class="heading">Monkey Navigation System</h2>
+  <h3 class="caption">Find the best route to navigate through the Pyramid of Bananas!</h3>
     <div class="card large">
       <form ng-controller="MonkeyCtrl as monk" ng-submit="monk.validated()">
       <div class="row center-align">
@@ -146,7 +148,7 @@
         <div class="pyramidLines row center-align" ng-repeat="(layer, blocks) in monk.pyramid track by $index">
           <div class="pyramidBlock center-align" ng-repeat="block in blocks">
             <div class="col s1 indigo accent-3 yellow-text center-align">
-              <p>{{ block.num }}</p>
+              <p>{{ block.num }} &#x1f34c;</p>
             </div>
           </div>
         </div>
@@ -158,7 +160,7 @@
           </button>
           <blockquoute>
             <li><strong> <h5 class="caption text-accent-3"> Total of: {{ monk.pyrInfo.len }} Rows!</h5></strong></li>
-            <li><strong> <h5 class="caption text-accent-3" ng-hide=""> Best Route: {{ monk.pyramid[0][0].num }} Bananas!</h5></strong></li>
+            <li><strong> <h5 class="caption text-accent-3" ng-hide=""> Best Route: {{ monk.pyramid[0][0].num }} &#x1f34c; Bananas!</h5></strong></li>
           </blockquoute>
 
         </div>
