@@ -9,14 +9,11 @@ button {
 
 #pyramidInput {
   margin: 1rem auto;
-  min-height: 5rem;
+  min-height: 15rem;
   width: 95%;
   max-height: 100%;
   text-align: center;
   font-size: 1.5rem;
-  &:hover, &:focus {
-    min-height: 15rem;
-  }
 }
 
 .nav-wrapper {
@@ -52,6 +49,9 @@ button {
   stroke-width: 1.5px;
 }
 
+#logo {
+  margin: -5px auto 70px auto;
+}
 
 @media only screen and (max-width : 992px) {
   header, main, footer {

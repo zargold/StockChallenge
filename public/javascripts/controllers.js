@@ -1,7 +1,7 @@
 (function(angular){
 angular.element(document).ready(function() {
   var app = angular.module('stockGraph', []);
-  
+  var monk = {};
   app.currentPrices = [];
   app.count = 0;
   app.points = [];
@@ -78,6 +78,108 @@ angular.element(document).ready(function() {
       }
     };
   });
+  monk.pyramid = {};
+  //used for object hack to convert Array of Arrays into Object (Angular necessity)
+  monk.pyrInfo = {len: 0, most: 0};
+  app.controller('MonkeyCtrl', function($scope) {
+    this.uncutPyramid = "5\n9    6\n4    6      8\n0    18     1     5\n3    6     21     5      9\n3    6      7     5      9       31";
+    this.pyramid = monk.pyramid;
+    this.pyrInfo = monk.pyrInfo;
+    
+    this.clear = function() {
+      monk.pyramid = {};
+      monk.pyrInfo = {len: 0};
+      this.validated();
+    };
+
+    this.validated = function() {
+      if(null == this.uncutPyramid || !this.uncutPyramid || this.uncutPyramid.trim().length < 1) return false;
+      var lines = this.uncutPyramid.trim().split('\n');
+      if(lines.length< 1) return false;
+      for(var i = 0; i < lines.length; i++){
+        var nums = lines[i].trim().split(/\s+/);
+        monk.pyramid[i] = [];
+        monk.pyrInfo.len += 1;
+        for (var n = 0; n < nums.length; n++){
+          var neededExclusions = 2;
+          if (n == 0 || n == nums.length - 1){
+            neededExclusions = 1;
+          }
+          this.pyramid[i].push({
+            'num': parseInt(nums[n], 10),
+            'neededExclusions': neededExclusions,
+            'excludedBy': {}
+          });
+
+        }
+      }
+    };
+
+    this.showMaxBananas = function() {
+      var interval = 800, waitFor = 0, stayFor = 200;
+      //Using pyramidLength to get length of Object
+      for(var level = this.pyrInfo.len-1; level > 0; level--){
+        for(var position = 0; position < this.pyramid[level].length - 1; position++){
+          console.log(position)
+          waitFor += interval;
+          monk.temporarilyClassify(monk.getBlock(level, position), "blue", waitFor, stayFor);
+          monk.temporarilyClassify(monk.getBlock(level, position+1), "blue", waitFor, stayFor);
+          var chosenPosition = position;
+          var excludedPosition = position + 1;
+          if (this.pyramid[level][position].num < this.pyramid[level][position+1].num){
+            chosenPosition = position + 1;
+            excludedPosition = position;
+          }
+          var bananasSoFar = this.pyramid[level-1][position].num + this.pyramid[level][chosenPosition].num;
+          this.pyramid[level-1][position].num = bananasSoFar;
+          //monk.setMaxBananas(monk.getBlock(level-1, position), bananasSoFar, waitFor);
+          monk.classify(monk.getBlock(level, chosenPosition), 'cyan', waitFor+stayFor);
+          monk.exclude(monk.getBlock(level-1, position), level, excludedPosition, this.pyramid, waitFor+stayFor*2);
+        }
+      }
+    };
+  });
+
+  monk.getBlock = function(level, position){
+    var block = document.getElementsByClassName("pyramidLines")[level].children[position];
+    console.log(block);
+    return block;
+  };
+
+  monk.temporarilyClassify = function(elem, mark, waitFor, stayFor) {
+    monk.classify(elem, mark, waitFor);
+    setTimeout(
+      function() {
+        elem.classList.remove(mark);
+        },
+      waitFor+stayFor);
+  };
+
+  monk.exclude = function(parentEl, level, position, pyramid, waitFor) {
+    maxLevels = pyramid.length;
+    curBlock = monk.getBlock(level, position);
+    var excludingTime = 500;
+    pyramid[level][position].excludedBy[parentEl] = true;
+    monk.temporarilyClassify(monk.getBlock(level, position), 'pink', waitFor, excludingTime);
+    if (Object.keys(pyramid[level][position].excludedBy).length === pyramid[level][position]["neededExclusions"]) {
+        monk.classify(monk.getBlock(level, position), 'pink', waitFor+excludingTime);
+        if (level+1 < pyramid.length){
+          monk.exclude(curBlock, level+1, position, pyramid, waitFor);
+          monk.exclude(curBlock, level+1, position+1, pyramid, waitFor);
+        }
+    }
+  };
+
+  monk.classify = function(elem, mark, waitFor){
+    setTimeout(
+      function() {
+        console.log(elem);
+        elem.classList.add(mark);
+      },
+      waitFor);
+  };
+
+
 
   angular.bootstrap(document, ['stockGraph']);
 });
