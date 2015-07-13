@@ -54,7 +54,10 @@
         </div>
       </form>
     </div>
-    <li ng-repeat="price in stock.prices track by $index small" class="pink lighten-5 red-text text-accent-3 center-align"> {{ price | currency }}</li>
+    <div class="divider"></div>
+    <ul class="collection">
+    <li ng-repeat="price in stock.prices track by $index" class="pink lighten-5 red-text text-accent-3 center-align small collection-item"> {{ price | currency }}</li>
+    </ul>
   </ul>
 
 
