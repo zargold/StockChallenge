@@ -1,9 +1,22 @@
 header, main, footer {
   padding-left: 240px; 
 }
+
 button {
   font-weight: lighter;
   width: 100%;
+}
+
+#pyramidInput {
+  margin: 1rem auto;
+  min-height: 5rem;
+  width: 95%;
+  max-height: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  &:hover, &:focus {
+    min-height: 15rem;
+  }
 }
 
 .nav-wrapper {
@@ -38,6 +51,7 @@ button {
   stroke: lime;
   stroke-width: 1.5px;
 }
+
 
 @media only screen and (max-width : 992px) {
   header, main, footer {

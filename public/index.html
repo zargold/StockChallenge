@@ -119,17 +119,29 @@
     </div>
   </div>
   <div class="container">
-    <div class="card">
-      <div class="input-field">
-        <textarea rows="10" cols="50" id="pyramidInput">
-                         5
-                     9      6
-                  4      6      8
-              0      18       1     5
-           3     6       21     5      9
-        3    6      7       5      9       31</textarea>
+    <div class="card large">
+      <form class="col s12">
+      <div class="row center-align">
+        <div class="input-field">
+          <textarea id="pyramidInput" col="40" row="60" class="materialize-textarea">
+          5
+          9    6
+          4    6      8
+          0    18     1     5
+          3    6     21     5      9
+          3    6      7     5      9       31</textarea>
+          <label for="pyramidInput">Where are the Bananas?</label>
+        </div>
       </div>
-    </div>
+      <div class="row">
+        <div class="col s12">
+        <button type="submit" class="waves-effect waves-light btn light-blue">
+          <span class="white-text"> Navigate It!<i class="material-icons">navigation</i></span>
+        </button>
+        </div>
+      </div>
+      </form>
+      </div>
     <div class="divider"></div>
     <div class="card">
       <div id="pyramidBlocks">

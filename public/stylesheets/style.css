@@ -5,6 +5,16 @@ button {
   font-weight: lighter;
   width: 100%; }
 
+#pyramidInput {
+  margin: 1rem auto;
+  min-height: 5rem;
+  width: 95%;
+  max-height: 100%;
+  text-align: center;
+  font-size: 1.5rem; }
+  #pyramidInput:hover, #pyramidInput:focus {
+    min-height: 15rem; }
+
 .nav-wrapper {
   margin-left: 40px; }
 
